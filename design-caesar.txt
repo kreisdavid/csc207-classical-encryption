@@ -1,0 +1,194 @@
+David Kreis
+9/7/15
+
+Caesar Cipher
+
+Five Cases:
+1. encode "helloworld"
+
+This program encrypts and decrypts messages using the Caesar Cipher.
+Would you like to encode or decode a message?  encode
+Enter the string to encode: helloworld
+n = 0: helloworld
+n = 1: ifmmpxpsme
+n = 2: jgnnqyqtnf
+n = 3: khoorzruog
+n = 4: lippsasvph
+n = 5: mjqqtbtwqi
+n = 6: nkrrucuxrj
+n = 7: olssvdvysk
+n = 8: pmttwewztl
+n = 9: qnuuxfxaum
+n = 10: rovvygybvn
+n = 11: spwwzhzcwo
+n = 12: tqxxaiadxp
+n = 13: uryybjbeyq
+n = 14: vszzckcfzr
+n = 15: wtaadldgas
+n = 16: xubbemehbt
+n = 17: yvccfnficu
+n = 18: zwddgogjdv
+n = 19: axeehphkew
+n = 20: byffiqilfx
+n = 21: czggjrjmgy
+n = 22: dahhksknhz
+n = 23: ebiiltloia
+n = 24: fcjjmumpjb
+n = 25: gdkknvnqkc
+
+As expected?  Yes
+
+2. decode "dahhksknhz"
+
+This program encrypts and decrypts messages using the Caesar Cipher.
+Would you like to encode or decode a message?  decode
+Enter the string to decode: dahhksknhz
+n = 0: dahhksknhz
+n = 1: czggjrjmgy
+n = 2: byffiqilfx
+n = 3: axeehphkew
+n = 4: zwddgogjdv
+n = 5: yvccfnficu
+n = 6: xubbemehbt
+n = 7: wtaadldgas
+n = 8: vszzckcfzr
+n = 9: uryybjbeyq
+n = 10: tqxxaiadxp
+n = 11: spwwzhzcwo
+n = 12: rovvygybvn
+n = 13: qnuuxfxaum
+n = 14: pmttwewztl
+n = 15: olssvdvysk
+n = 16: nkrrucuxrj
+n = 17: mjqqtbtwqi
+n = 18: lippsasvph
+n = 19: khoorzruog
+n = 20: jgnnqyqtnf
+n = 21: ifmmpxpsme
+n = 22: helloworld
+n = 23: gdkknvnqkc
+n = 24: fcjjmumpjb
+n = 25: ebiiltloia
+
+As expected? Yes
+
+
+3. invalid input, not asking to encode or decode
+
+This program encrypts and decrypts messages using the Caesar Cipher.
+Would you like to encode or decode a message?  both
+Invalid input. Valid inputs are "encode" or "decode"
+
+As expected? Yes
+
+4. encode ""  (hitting enter without giving it a message to encrypt)
+This program encrypts and decrypts messages using the Caesar Cipher.
+Would you like to encode or decode a message?  encode
+Enter the string to encode: 
+n = 0: 
+n = 1: 
+n = 2: 
+n = 3: 
+n = 4: 
+n = 5: 
+n = 6: 
+n = 7: 
+n = 8: 
+n = 9: 
+n = 10: 
+n = 11: 
+n = 12: 
+n = 13: 
+n = 14: 
+n = 15: 
+n = 16: 
+n = 17: 
+n = 18: 
+n = 19: 
+n = 20: 
+n = 21: 
+n = 22: 
+n = 23: 
+n = 24: 
+n = 25: 
+
+As expected? Yes
+
+5. decode "" (hitting enter without giving it a message to decrypt)
+
+This program encrypts and decrypts messages using the Caesar Cipher.
+Would you like to encode or decode a message?  decode
+Enter the string to decode: 
+n = 0: 
+n = 1: 
+n = 2: 
+n = 3: 
+n = 4: 
+n = 5: 
+n = 6: 
+n = 7: 
+n = 8: 
+n = 9: 
+n = 10: 
+n = 11: 
+n = 12: 
+n = 13: 
+n = 14: 
+n = 15: 
+n = 16: 
+n = 17: 
+n = 18: 
+n = 19: 
+n = 20: 
+n = 21: 
+n = 22: 
+n = 23: 
+n = 24: 
+n = 25: 
+
+As expected? Yes
+
+
+
+
+Single key smaller component: lines 18 and 19, the if statement that solves
+                               the wrapping of characters whose new
+                               numerical value would otherwise exceed the
+                               number of letters in the english alphabet.
+
+1. What does this component do in a single sentence?
+ This component solves the wrapping of characters whose new numerical value
+ would otherwise exceed the number of letters in the english alphabet.
+     ie. y changing to c (24+4=28 -> 2)
+
+2. What is the interface to this component? What are its inputs and
+outputs?
+   This component takes the value of changeTo, an int that holds the
+   numeric value of what the character at the specific index is supposed to
+   be changed to by the cipher. It compares that value to check that it is
+   within the range of the 26 character alphabet, and if not it correctly
+   adjusts the number to produce the correct numeric value of the character
+   it is being changed to.
+
+3. What are five representative test cases this component should pass?
+ I'm not sure that there are five cases that this component can run
+ into. Due to the design of the code, this component is passed an int,
+ which theoretically could be any numeric value, but in practice, provided
+ none of the code is changed, a user can only give it inputs that results
+ in a number from 0 to 51. The two cases that matter in this case are if
+ the number given is less than 26 or not. If the number is less than 26,
+ then it falls within the 26 letter english alphabet (numbered 0 though
+ 25), and there is no change that needs to be made. If the number is 26 or
+ higher, then an adjustment needs to be made to simulate the wrapping of
+ the alphabet for the purposes of the cipher. In both of these cases, the
+ component passes the tests.
+
+In terms of design for the whole project, I began with what I knew I would
+be giving the program, and what I wanted to get out. I identified that
+encoding and decoding applied different changes, and thus would need
+seperate functions. To address the issue of wrapping around, I wrote out a
+few examples to see what pattern showed up. That investigation got turned
+into lines 18/19 (as described above) and 36/37 for encoding and decoding
+respectively. Splitting the string up into a character array allowed for
+changing the individual characters with the cipher before putting them all
+back together for printing it out. 
