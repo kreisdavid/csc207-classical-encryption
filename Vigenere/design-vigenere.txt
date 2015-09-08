@@ -74,14 +74,6 @@ As expected? Yes
 
 
 
-
-Also like the previous part, you should follow the design formula. Please submit in a separate text file in your repository, design-vigenere.txt, describing what you did in terms of design. More specifically, for the overall CaeserCipher program and the additional sub-component you identify, answer the following questions:
-
-    What does this component do in a single sentence?
-    What is the interface to this component? What are its inputs and outputs?
-    What are five representative test cases this component should pass?
-
-
 Single key smaller component: the function encode.
 
 1. What does this component do in a single sentence?
