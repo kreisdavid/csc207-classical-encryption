@@ -32,7 +32,25 @@ public class VigenereCipher {
 	
 	
 	public static void decode(String s, Scanner scan){
-		
+		System.out.println("Enter the key: ");
+		String key = scan.nextLine();
+		char[] decodedMessage = s.toCharArray();
+		int changeTo;
+		int base = 97;
+		int keyIndex = 0; //same use as above
+		for(int i = 0; i< s.length(); i++){
+			changeTo = (int) s.charAt(i) - base - ((int) key.charAt(keyIndex) - base);
+			if(changeTo < 0){
+				changeTo += 26;
+			}
+			decodedMessage[i] = (char) (changeTo + base);
+			keyIndex++;
+			if(keyIndex == key.length()){
+				keyIndex = 0;
+			}
+		}
+		String finalMessage = new String(decodedMessage);
+		System.out.println(finalMessage);
 	}
 	
 	public static void main(String[] args) {
