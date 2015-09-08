@@ -1,0 +1,134 @@
+David Kreis
+9/7/15
+
+Vigenere Cipher
+
+Seven Cases:
+1. encrypt "helloworld" with key: "cap"
+
+This program encrypts and decrypts messages using the Vigenere Cipher.
+Would you like to encode or decode a message?  encode
+Enter the string to encode: helloworld
+Enter the key: cap
+jeanolqraf
+
+As expected? Yes
+
+2. decrypt "" with key: "cap"
+
+This program encrypts and decrypts messages using the Vigenere Cipher.
+Would you like to encode or decode a message?  decode
+Enter the string to decode: jeanolqraf
+Enter the key: cap
+helloworld
+
+As expected? Yes
+
+3. Invalid input when asking encode or decode
+
+This program encrypts and decrypts messages using the Vigenere Cipher.
+Would you like to encode or decode a message?  both
+Invalid input. Valid inputs are "encode" or "decode"
+
+As expected? Yes
+
+4. No input for word to encode
+
+This program encrypts and decrypts messages using the Vigenere Cipher.
+Would you like to encode or decode a message?  encode
+Enter the string to encode: 
+Enter the key: cap
+      //(not visible, but empty line printed and program terminated)
+
+As expected? Yes
+
+5. No input for word to decod
+This program encrypts and decrypts messages using the Vigenere Cipher.
+Would you like to encode or decode a message?  decode
+Enter the string to decode: 
+Enter the key: cap
+      //(likewise for this case as well)
+
+As expected? Yes
+
+6. No input for key while encoding
+
+This program encrypts and decrypts messages using the Vigenere Cipher.
+Would you like to encode or decode a message?  encode
+Enter the string to encode: helloworld
+Enter the key: 
+Invalid. No key entered.
+
+As expected? Yes
+
+7. No input for key while decoding
+
+This program encrypts and decrypts messages using the Vigenere Cipher.
+Would you like to encode or decode a message?  decode
+Enter the string to decode: helloworld
+Enter the key: 
+Invalid. No key entered.
+
+
+As expected? Yes
+
+
+
+
+Also like the previous part, you should follow the design formula. Please submit in a separate text file in your repository, design-vigenere.txt, describing what you did in terms of design. More specifically, for the overall CaeserCipher program and the additional sub-component you identify, answer the following questions:
+
+    What does this component do in a single sentence?
+    What is the interface to this component? What are its inputs and outputs?
+    What are five representative test cases this component should pass?
+
+
+Single key smaller component: the function encode.
+
+1. What does this component do in a single sentence?
+ This function takes a message and a key and encrypts the message with the
+ key according to the Vigenere Cipher.
+
+2. What is the interface to this component? What are its inputs and
+outputs?
+ This function takes two inputs, a string (the message) and a scanner. The
+ scanner is sent so as to find the key that the message will be encoded
+ with. While that could have been found outside the function, as I
+ was working off the base structure of the previous Caesar Cipher, it was a
+ smoother transition to send the scanner instead. While there is no output
+ of the function back to the main function, it does output to the user the
+ encrypted message.
+
+3. What are five representative test cases this component should pass?
+There are two cases that the homework outline instructs me to ignore; those
+with letters that are uppercase, and those where the message contains
+characters that are not letters of the english alphabet (such as spaces,
+numbers, periods, quotation marks). Three other cases are when both a valid
+message and key are provided, when only a valid message is provided (with
+no key), and when only a valid key is provided (with no message). Those
+last three cases are shown as part of the seven cases that the program was
+tested on. In the first of the three, the function should print out a
+message that is the encoded version of the original message using the valid
+key. In the second case, a message is given saying that no key was
+provided. That was a design choice, it could have also been implemented
+where the original message is output, with no change as there was no
+key. In the third case, the original message (an empty string, "") is
+printed, as there are no characters to be changed.
+
+
+In terms of design for the whole project, I began with the previous Caesar
+Cipher as a base. Both programs are similar in that they both take a
+message and either encode or decode it, the difference being in how that
+end goal is accomplished. The design choice was made to pass the scanner
+along to the encode and decode functions, which kept main essentially
+identical to Caesar Cipher. The differences came in the implementation of
+the encode and decode functions. The wrapping of the alphabet was the same,
+but the manner in which the characters were changed was different. After
+writing a few examples on paper to get a sense for the pattern, I decided
+that the best method for cycling through the key would be to have a
+seperate counter that kept track of which letter of the key would be used
+to change the current character from the message on that time though the
+loop. The counter is reset every time it reaches the end, which ensures
+that no matter the length of the message, the key will continue to be
+cycled through properly. As with CaesarCipher, splitting the original
+string into a character array allowed for changing individual characters
+before putting them back into a string to print it out. 
